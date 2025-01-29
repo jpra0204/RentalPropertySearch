@@ -1,8 +1,13 @@
 import React from 'react'
+import Hero from '@/components/Hero'
+import InfoBoxes from '@/components/InfoBoxes'
 
 function HomePage() {
   return (
-    <div className='text-2xl'>HomePage</div>
+    <>
+        <Hero />
+        <InfoBoxes />
+    </>
   )
 }
 
