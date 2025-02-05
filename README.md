@@ -2,6 +2,19 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
+=== TECH STACK USED ===
+NEXT.JS
+Javascript
+Tailwind css
+React router
+MongoDB
+MongoDB Compass
+Mongoose
+
+=== Packages used ===
+react-icons
+react-spinners
+
 First, run the development server:
 
 ```bash
