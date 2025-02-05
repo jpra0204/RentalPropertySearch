@@ -9,23 +9,17 @@ let connected = false;
  * saved into the database
  */
 const connectDB = async () => {
-    console.log("hello")
     mongoose.set("strictQuery", true)
-    console.log("hello 2")
 
     // Ensure connection only once
     if(connected) {
-        console.log("hello connected")
         console.log("MongoDB is connected");
         return;
     }
 
-    console.log("hello 3")
     // Connect to MongoDB
     try {
-        console.log("hello try")
-        let connection = await mongoose.connect(process.env.MONGODB_URI)
-        console.log(connection)
+        await mongoose.connect(process.env.MONGODB_URI)
     } catch (error) {
         console.log(error)
     }
