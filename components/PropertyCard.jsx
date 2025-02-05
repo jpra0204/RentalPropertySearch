@@ -3,7 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { FaBed, FaBath, FaRulerCombined, FaMoneyBill, FaMapMarker } from "react-icons/fa";
 
-function PropertyCard({ property }) {
+const PropertyCard = ({ property }) => {
 
     /**
      * This functions reads the property rate information and will return a ready to display string

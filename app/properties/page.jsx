@@ -2,7 +2,7 @@ import React from 'react'
 import propertiesDummy from "@/properties.json"
 import PropertyCard from '@/components/PropertyCard'
 
-function PropertiesPage() {
+const PropertiesPage = () => {
   
   return (
     <section className='px-r py-6'>

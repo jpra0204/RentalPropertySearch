@@ -3,7 +3,7 @@ import PropertyCard from './PropertyCard'
 import propertiesDummy from '@/properties.json'
 import Link from 'next/link'
 
-function HomeProperties() {
+const HomeProperties = () => {
 
     const FeaturedProperties = propertiesDummy.slice(0, 3)
 
