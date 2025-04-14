@@ -1,6 +1,22 @@
 'use server'
+import connectDB from "@/config/database";
+import Property from "@/models/Property";
+import { getSessionUser } from "@/utils/getSessionUser";
+import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 
 export default async function addProperty(formData) {
+
+    await connectDB();
+    const sessionUser = await getSessionUser();
+
+    if (!sessionUser || !sessionUser.userId) {
+        throw new Error('User not authenticated');
+    }
+
+    const { userId } = sessionUser;
+
+    // console.log(formData);
 
     // Extract the amenities and images from the form data
     const amenities = formData.getAll('amenities');
@@ -8,6 +24,7 @@ export default async function addProperty(formData) {
 
     // Create an object to store the property data
     const propertyData = {
+        owner: userId,
         type: formData.get('type'),
         name: formData.get('name'),
         description: formData.get('description'),
@@ -19,7 +36,7 @@ export default async function addProperty(formData) {
         },
         beds: formData.get('beds'),
         baths: formData.get('baths'),
-        squareFeet: formData.get('square_feet'),
+        square_feet: formData.get('square_feet'),
         amenities: amenities,
         rates: {
             nightly: formData.get('rates.nightly'),
@@ -34,7 +51,11 @@ export default async function addProperty(formData) {
         images: images,
     };
 
-    // You can add your logic to handle propertyData here, such as saving it to a database
-
     console.log(propertyData);
+
+    const newProperty = new Property(propertyData);
+    await newProperty.save();
+
+    revalidatePath('/', 'layout');
+    redirect(`/properties/${newProperty._id}`);
 }

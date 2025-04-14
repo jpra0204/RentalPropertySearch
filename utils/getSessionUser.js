@@ -1,5 +1,5 @@
 import { getServerSession } from 'next-auth/next';
-import { authOptions } from '../authOptions';
+import { authOptions } from '@/utils/authOptions';
 
 export async function getSessionUser() {
     const session = await getServerSession(authOptions);
@@ -10,6 +10,6 @@ export async function getSessionUser() {
 
     return { 
         user: session.user, 
-        userId: session.userId 
+        userId: session.user.id
     };
 }
